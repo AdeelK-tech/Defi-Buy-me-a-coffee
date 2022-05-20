@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Button, Container,Form, Input, Label,TextArea } from "semantic-ui-react";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <div style={{textAlign:'center',marginTop:'80px'}}>
+      <h1>BUY ADEEL A CHAI....</h1>
+      <div style={{marginTop:'70px'}}>
+      <Form>
+    <Form.Field>
+      <label>NAME:</label>
+      <Input style={{width:'200px'}}></Input>
+      </Form.Field>
+      <Form.Field>
+      <TextArea placeholder='ADD MEMOS' style={{width:'500px'}}></TextArea>
+      </Form.Field>
+      <Button secondary content='send 0.01 ETH'></Button>
+  </Form>
+      </div>
+      </div>
+      
+    </Container>
   );
 }
 
