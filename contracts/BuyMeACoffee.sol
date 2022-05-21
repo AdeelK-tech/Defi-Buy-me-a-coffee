@@ -28,7 +28,7 @@ contract BuyMeACoffee {
         memos.push(memo);
         
     }
-    function withDrawTips()public{
+    function withdrawTips()public{
         require(msg.sender==owner);
         owner.transfer(address(this).balance);
     }

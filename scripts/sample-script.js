@@ -19,7 +19,7 @@ for(let memo of memos){
 }
 }
 async function main() {
-  const [owner,tipper1,tipper2]=await hre.ethers.getSigners();
+  const [owner,tipper1,tipper2,tipper3]=await hre.ethers.getSigners();
  const BUYMEACOFFEE=await hre.ethers.getContractFactory('BuyMeACoffee');
  const buymeacoffee=await BUYMEACOFFEE.deploy()
   await buymeacoffee.deployed();
@@ -27,6 +27,19 @@ async function main() {
 
   const addresses=[owner.address,tipper1.address,buymeacoffee.address];
   await getBalances(addresses)
+  const tip={value:hre.ethers.utils.parseEther('1')}
+  await buymeacoffee.connect(tipper1).BuyACoffee('Sufyan','Chai peelo',tip)
+  await buymeacoffee.connect(tipper2).BuyACoffee('Mannu','Chai peelo',tip)
+  await buymeacoffee.connect(tipper3).BuyACoffee('Pasha','Chai peelo',tip)
+  console.log('after buying coffee')
+  await getBalances(addresses);
+
+  console.log('== withdraw ==')
+  await buymeacoffee.withdrawTips();
+
+  console.log('==memos==')
+  const memos=await buymeacoffee.getMemos();
+  await printMemos(memos);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
